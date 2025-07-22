@@ -1,0 +1,16 @@
+{
+  "contactDetails": [
+    {
+      "label": "Phone",
+      "value": "+1 (555) 123-4567",
+      "href": "tel:+15551234567",
+      "icon": "FaPhone"
+    },
+    {
+      "label": "Email",
+      "value": "contact@kaambazar.com",
+      "href": "mailto:contact@kaambazar.com",
+      "icon": "FaEnvelope"
+    }
+  ]
+}

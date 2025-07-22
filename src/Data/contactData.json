@@ -1,0 +1,39 @@
+{
+  "contactDetails": {
+    "phone": "+1 (555) 123-4567",
+    "email": "contact@medsupply.com",
+    "address": "123 Health St, Medical City, CA 90210",
+    "businessHours": {
+      "Monday-Friday": "9:00 AM - 5:00 PM",
+      "Saturday": "10:00 AM - 2:00 PM",
+      "Sunday": "Closed"
+    }
+  },
+  "formFields": [
+    {
+      "name": "name",
+      "type": "text",
+      "label": "Name",
+      "placeholder": "Your Name"
+    },
+    {
+      "name": "email",
+      "type": "email",
+      "label": "Email",
+      "placeholder": "Your Email"
+    },
+    {
+      "name": "subject",
+      "type": "text",
+      "label": "Subject",
+      "placeholder": "Subject"
+    },
+    {
+      "name": "message",
+      "type": "textarea",
+      "label": "Message",
+      "placeholder": "Your Message",
+      "rows": 5
+    }
+  ]
+}
