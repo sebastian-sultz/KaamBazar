@@ -1,69 +1,87 @@
-# React + TypeScript + Vite
+# 💼 KaamBazar — Local Job & Services Marketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**KaamBazar** is a modern, responsive React + TypeScript web application built to connect users with local blue-collar and skilled professionals. Whether you're hiring a maid, driver, electrician, or plumber — KaamBazar makes the experience fast, verified, and location-smart.
 
-Currently, two official plugins are available:
+Designed with a clean, scalable UI and powered by performance-focused tech like **Vite**, **Tailwind CSS**, and **GSAP**, it's built for both job providers and seekers with real-time visibility.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🧩 Table of Contents  
+- 🚀 [Features](#-features)  
+- 🛠️ [Tech Stack](#%EF%B8%8F-tech-stack)  
+- 📦 [Installation](#-installation)  
+- ✏️ [Customisation](#%EF%B8%8F-customisation)  
+- 🤝 [Contributing](#-contributing)  
+- 📜 [License](#-license)  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Features  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 🔍 **Discover Professionals**  
+- Location-based service matching  
+- Verified worker profiles with ratings  
+- Real-time availability indicators  
+
+### 💼 **Hiring Made Easy**  
+- Instant booking system  
+- Rate transparency  
+
+
+### 🎨 **Premium Experience**  
+- Immersive video background  
+- Smooth animations  
+
+
+---
+
+## 🛠️ Tech Stack  
+
+| Category       | Technologies Used |  
+|----------------|-------------------|  
+| **Frontend**   | React, TypeScript, Vite |  
+| **Styling**    | Tailwind CSS, Flowbite |  
+| **Animations** | GSAP, Framer Motion |  
+| **State**      | Context API |  
+
+---
+
+## 📦 Installation  
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/sebastian-sultz/KaamBazar.git
+cd KaamBazar
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser to preview the app.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ✏️ Customization
+
+- 🎨 **Colors**: Update in `tailwind.config.js` under `theme.extend.colors`
+- 🧩 **Team / Testimonials / Footer**: Edit corresponding JSON files in `src/Data/`
+- 🖼 **Images**: Place in `src/assets/Img/`
+- 🧠 **User context logic**: Modify in `src/UserContext.jsx`
+
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+Fork the repository, create a branch, make your changes, and submit a pull request.
+
+---
+
+## 📜 Licence
+
+**Adarsh Tripathi**  
+🔗 [LinkedIn](https://linkedin.com/in/adarsh-tripathi-321b7a257)  
+💻 [GitHub](https://github.com/sebastian-sultz)
+
+
+
