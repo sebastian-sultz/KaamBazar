@@ -49,6 +49,12 @@ export default {
 
 
       keyframes: {
+
+         pulse: {
+      '0%, 100%': { opacity: '1' },
+      '50%': { opacity: '0.5' },
+    },
+
         shine: {
           '0%': { 'background-position': '100%' },
           '100%': { 'background-position': '-100%' },
@@ -92,7 +98,7 @@ export default {
         'star-movement-top': 'star-movement-top linear infinite alternate',
  shine: 'shine 5s linear infinite',
 
-        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+       'custom-pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'spin-slow': 'spin 10s linear infinite',
         floatFadePause: 'floatFadePause 4s ease-in-out forwards',
         floatFadePauseDelayed: 'floatFadePauseDelayed 4s ease-in-out forwards',

@@ -182,15 +182,15 @@ const testimonials: Testimonial[] = [
 const VerifiedBadge: React.FC = () => (
   <div className="absolute top-5 right-5 z-10">
     <MdVerified
-      className="text-green-500 text-xl drop-shadow"
+      className="text-green-500 text-xl drop-shadow animate-custom-pulse" 
       title="Verified Professional"
     />
   </div>
 );
 
 const TopRatedBadge: React.FC = () => (
-  <div className="absolute top-1 right-1 z-10 flex items-center gap-1 bg-secondary/90 text-white px-2 py-0.5 rounded-full shadow text-xs">
-    <FaTrophy className="text-l" />
+  <div className="absolute top-1 right-1 z-10 flex items-center gap-1 bg-secondary/90 text-white px-2 py-0.5 rounded-full shadow text-xs ">
+    <FaTrophy className="text-base " />
   </div>
 );
 
