@@ -180,7 +180,7 @@ const testimonials: Testimonial[] = [
 
 // Components
 const VerifiedBadge: React.FC = () => (
-  <div className="absolute top-2 right-2 z-10">
+  <div className="absolute top-5 right-5 z-10">
     <MdVerified
       className="text-green-500 text-xl drop-shadow"
       title="Verified Professional"
