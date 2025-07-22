@@ -14,10 +14,9 @@ import {
 } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 
-import { FaGooglePlay, FaApple, FaUsers } from "react-icons/fa";
+import {FaApple, FaUsers } from "react-icons/fa";
 import ScrollFloat from "../assets/Anim/ScrollFloat";
 import { motion } from "framer-motion";
-import StarBorder from "../assets/Anim/StarBorder";
 import Img1 from "../assets/Img/1.png"
 import Img2 from "../assets/Img/2.png"
 import Img3 from "../assets/Img/3.png"

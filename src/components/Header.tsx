@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useUser } from '../UserContext';
+import { useUser } from '../UserContext.tsx';
 import { FaUser } from 'react-icons/fa';
 import StarBorder from '../assets/Anim/StarBorder';
 import Logo from "../assets/Img/kaambazar_logo_512x512px_transparent.png"

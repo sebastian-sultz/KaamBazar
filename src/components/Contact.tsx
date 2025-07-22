@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import {
   PhoneCall,
   Mail,
-  Facebook,
+  Youtube,
+  
   Twitter,
   Instagram,
   Linkedin,
@@ -10,28 +11,65 @@ import {
   CheckCircle,
   AlertCircle,
   Loader2,
+  MapPin,
+  Clock,
+ 
 } from "lucide-react";
+import contactData from "../Data/contactData.json";
 import GradientButton from "./GradientButton";
+type FormData = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type FormErrors = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type CharacterCount = {
+  name: number;
+  subject: number;
+  message: number;
+};
+
+type SubmitStatus = {
+  type: "success" | "error" | null;
+  message: string;
+};
+
+// type GradientButtonProps = {
+//   type: "submit" | "button" | "reset";
+//   text: string;
+//   icon?: React.ReactElement;
+//   className?: string;
+//   size?: string;
+//   disabled?: boolean;
+// };
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [errors, setErrors] = useState({
+  const [errors, setErrors] = useState<FormErrors>({
     name: "",
     email: "",
     subject: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    type: "success" | "error" | null;
-    message: string;
-  }>({ type: null, message: "" });
-  const [characterCount, setCharacterCount] = useState({
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>({
+    type: null,
+    message: "",
+  });
+  const [characterCount, setCharacterCount] = useState<CharacterCount>({
     name: 0,
     subject: 0,
     message: 0,
@@ -46,7 +84,7 @@ const ContactUs = () => {
     });
   }, [formData]);
 
-  const validateField = (name: string, value: string) => {
+  const validateField = (name: keyof FormData, value: string): string => {
     let error = "";
     
     switch (name) {
@@ -78,17 +116,17 @@ const ContactUs = () => {
     setFormData({ ...formData, [name]: value });
     
     // Validate on change only after first submission attempt or field blur
-    if (submitStatus.type === "error" || errors[name]) {
-      setErrors({ ...errors, [name]: validateField(name, value) });
+    if (submitStatus.type === "error" || errors[name as keyof FormErrors]) {
+      setErrors({ ...errors, [name]: validateField(name as keyof FormData, value) });
     }
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setErrors({ ...errors, [name]: validateField(name, value) });
+    setErrors({ ...errors, [name]: validateField(name as keyof FormData, value) });
   };
 
-  const validateForm = () => {
+  const validateForm = (): boolean => {
     const newErrors = {
       name: validateField("name", formData.name),
       email: validateField("email", formData.email),
@@ -102,8 +140,9 @@ const ContactUs = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate form immediately
     if (!validateForm()) {
-      setSubmitStatus({ type: "error", message: "Please fix the errors in the form." });
+      setSubmitStatus({ type: "error", message: "Please fill out all required fields correctly." });
       return;
     }
 
@@ -128,6 +167,8 @@ const ContactUs = () => {
     }, 1500);
   };
 
+ 
+
   return (
     <section className="bg-background py-28 px-4 sm:px-10 md:px-20">
       <div className="max-w-7xl mx-auto">
@@ -143,43 +184,78 @@ const ContactUs = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Column: Contact Cards + Social */}
           <div className="space-y-8">
-            {[{
-              icon: <PhoneCall className="w-6 h-6" />,
-              label: "Phone",
-              value: "+91 98765 43210",
-              color: "primary"
-            }, {
-              icon: <Mail className="w-6 h-6" />,
-              label: "Email",
-              value: "support@example.com",
-              color: "secondary"
-            }].map(({ icon, label, value, color }, index) => (
-              <div
-                key={index}
-                className="flex items-start gap-5 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg"
-              >
-                <div className={`bg-${color} p-4 rounded-full text-white shadow-md`}>
-                  {icon}
+            {/* Contact Info Cards */}
+            <div className="flex flex-col gap-6">
+              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
+                <div className="bg-primary p-4 rounded-full text-white shadow-md">
+                  <PhoneCall className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className={`text-lg font-semibold text-${color}`}>{label}</h3>
-                  <p className="text-textSecondary">{value}</p>
+                  <h3 className="text-lg font-semibold text-primary">Phone</h3>
+                  <p className="text-textSecondary">{contactData.contactDetails.phone}</p>
                 </div>
               </div>
-            ))}
+
+              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
+                <div className="bg-secondary p-4 rounded-full text-white shadow-md">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-secondary">Email</h3>
+                  <p className="text-textSecondary">{contactData.contactDetails.email}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
+                <div className="bg-accent p-4 rounded-full text-white shadow-md">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-accent">Address</h3>
+                  <p className="text-textSecondary">{contactData.contactDetails.address}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg">
+                <div className="bg-primary p-4 rounded-full text-white shadow-md">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-primary">Business Hours</h3>
+                  <p className="text-textSecondary">
+                    {Object.entries(contactData.contactDetails.businessHours).map(
+                      ([day, hours], index) => (
+                        <span key={index}>
+                          {day}: {hours}
+                          <br />
+                        </span>
+                      )
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
 
             {/* Social Icons */}
-            <div className="flex gap-4 pt-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  className="bg-primary hover:bg-secondary text-white p-3 rounded-full transition duration-200 shadow-md hover:scale-110"
-                >
-                  <Icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
+           <div className="flex gap-4 pt-4">
+  {[
+    { icon: Youtube, url: "https://www.youtube.com/@Kaambazar" },
+    { icon: Twitter, url: "https://www.youtube.com/@Kaambazar" },
+    { icon: Instagram, url: "https://www.youtube.com/@Kaambazar" },
+    { icon: Linkedin, url: "https://www.youtube.com/@Kaambazar" },
+  ].map(({ icon: Icon, url }, idx) => (
+    <a
+      key={idx}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-primary hover:bg-secondary text-white p-3 rounded-full transition duration-200 shadow-md hover:scale-110"
+    >
+      <Icon className="w-5 h-5" />
+    </a>
+  ))}
+</div>
+
           </div>
 
           {/* Right Column: Contact Form */}
@@ -217,26 +293,26 @@ const ContactUs = () => {
                       name={name}
                       type={type}
                       placeholder={placeholder}
-                      value={(formData as any)[name]}
+                      value={formData[name as keyof FormData]}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       maxLength={maxLength}
                       className={`w-full bg-background border ${
-                        errors[name] ? "border-red-500" : "border-white/20"
+                        errors[name as keyof FormErrors] ? "border-red-500" : "border-white/20"
                       } text-text px-5 py-3 rounded-xl focus:outline-none focus:ring-2 ${
-                        errors[name] ? "focus:ring-red-500" : "focus:ring-primary"
+                        errors[name as keyof FormErrors] ? "focus:ring-red-500" : "focus:ring-primary"
                       }`}
                     />
                     {maxLength && (
                       <span className="absolute right-3 bottom-3 text-xs text-textSecondary">
-                        {characterCount[name]}/{maxLength}
+                        {characterCount[name as keyof CharacterCount]}/{maxLength}
                       </span>
                     )}
                   </div>
-                  {errors[name] && (
+                  {errors[name as keyof FormErrors] && (
                     <p className="text-red-500 text-sm flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
-                      {errors[name]}
+                      {errors[name as keyof FormErrors]}
                     </p>
                   )}
                 </div>
@@ -270,7 +346,7 @@ const ContactUs = () => {
                 )}
               </div>
 
-              <GradientButton
+               <GradientButton
                 type="submit"
                 text={isSubmitting ? "Sending..." : "Send Message"}
                 icon={isSubmitting ? <Loader2 className="animate-spin" /> : <SendHorizonal />}
@@ -283,21 +359,22 @@ const ContactUs = () => {
         </div>
 
         {/* Google Map */}
-        <div className="mt-20">
-          <h2 className="text-2xl font-semibold text-center text-primary mb-6">Find Us on the Map</h2>
-          <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <iframe
-              title="Google Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019314015916!2d-122.41941548468152!3d37.77492977975806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c31f7e6df%3A0x3bdc3c9e1a0e3f45!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1629052204987!5m2!1sen!2sus"
-              width="100%"
-              height="450"
-              allowFullScreen
-              loading="lazy"
-              className="w-full h-[450px] border-none"
-              style={{ filter: "grayscale(10%) contrast(110%) brightness(95%)" }}
-            ></iframe>
-          </div>
-        </div>
+       <div className="mt-20">
+  <h2 className="text-2xl font-semibold text-center text-primary mb-6">Find Us on the Map</h2>
+  <div className="rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+    <iframe
+      title="Google Map"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3580.753566617539!2d91.7690125750222!3d26.17215407709627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a597df4893e79%3A0x3d5972b0a9cf1ab7!2sGreyNext%20(formerly%20RetinaMonk)!5e0!3m2!1sen!2sin!4v1753154356497!5m2!1sen!2sin"
+      width="100%"
+      height="450"
+      allowFullScreen
+      loading="lazy"
+      className="w-full h-[450px] border-none"
+      style={{ filter: "grayscale(10%) contrast(110%) brightness(95%)" }}
+    ></iframe>
+  </div>
+</div>
+
       </div>
     </section>
   );

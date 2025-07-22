@@ -2,7 +2,7 @@
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import Header from './components/Header';
-import { UserProvider } from './UserContext';
+import { UserProvider } from './UserContext.tsx';
 import Footer from './components/Footer';
 import WhatsAppCTA from './components/WhatsAppCTA';
 import ScrollToTop from './components/ScrollToTop';

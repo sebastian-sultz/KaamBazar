@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import GradientButton from './GradientButton';
 import { IoLogoGooglePlaystore } from 'react-icons/io5';
