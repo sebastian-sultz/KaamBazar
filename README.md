@@ -62,7 +62,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser to preview t
 
 ---
 
-## ✏️ Customization
+## ✏️ Customisation
 
 - 🎨 **Colors**: Update in `tailwind.config.js` under `theme.extend.colors`
 - 🧩 **Team / Testimonials / Footer**: Edit corresponding JSON files in `src/Data/`
@@ -77,7 +77,7 @@ Fork the repository, create a branch, make your changes, and submit a pull reque
 
 ---
 
-## 📜 Licence
+## 📜 License
 
 **Adarsh Tripathi**  
 🔗 [LinkedIn](https://linkedin.com/in/adarsh-tripathi-321b7a257)  
