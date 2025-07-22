@@ -319,93 +319,108 @@ const Features: React.FC = () => {
       </div>
 
       {/* Professionals Section */}
-      <div className="bg-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
-            {activeCategory === "all"
-              ? "All Professionals"
-              : `${categories.find((c) => c.id === activeCategory)?.label} Professionals`}
-          </h3>
-          {filteredProfessionals.length > 0 ? (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProfessionals.map((pro) => (
-                <motion.div
-                  key={pro.id}
-                  whileHover={{ y: -5 }}
-                  className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 relative"
-                >
-                  {pro.isVerified && <VerifiedBadge />}
-                  <div className="flex items-start gap-3 mb-4 relative">
-                    <div className="relative w-20 h-24 sm:w-24 sm:h-28 bg-gray-200 rounded-md overflow-hidden flex-shrink-0">
-                      {pro.isTopRated && <TopRatedBadge />}
-                      <img
-                        src={pro.image}
-                        alt={pro.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2280%22%20height%3D%2296%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2280%22%20height%3D%2296%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Ctext%20x%3D%2220%22%20y%3D%2250%22%20fill%3D%22%23AAAAAA%22%20font-family%3D%22Arial%22%20font-size%3D%2212%22%3EImage%3C%2Ftext%3E%3C%2Fsvg%3E";
-                        }}
-                      />
-                    </div>
-                    <div className="flex-grow">
-                      <h4 className="font-semibold text-base sm:text-lg">{pro.name}</h4>
-                      <p className="text-xs sm:text-sm text-gray-500">{pro.role}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center">
-                      <FaStar className="text-yellow-400 mr-1 text-sm" />
-                      <span className="font-medium text-sm">{pro.rating.toFixed(1)}</span>
-                      <span className="text-xs text-gray-500">
-                        ({pro.ratingCount > 1000 ? `${(pro.ratingCount / 1000).toFixed(1)}k+` : pro.ratingCount})
-                      </span>
-                    </div>
-                    <div className="border border-green-500 bg-green-50 text-green-600 px-2 py-1 rounded-full text-xs font-medium">
-                      ₹{pro.rate}/hr
-                    </div>
-                  </div>
-                  <div className="flex items-center text-xs sm:text-sm text-gray-600 mb-4">
-                    <FaMapMarkerAlt className="mr-1.5 text-gray-400" />
-                    <span className="truncate">{pro.location}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {pro.isSponsored && (
-                      <span className="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">
-                        Sponsored
-                      </span>
-                    )}
-                    {pro.isAvailable ? (
-                      <span className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">
-                        Available Now
-                      </span>
-                    ) : (
-                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
-                        Not Available
-                      </span>
-                    )}
-                  </div>
-                  <GradientButton
-                    to={`/book/${pro.id}`}
-                    text="Book Now"
-                    className="w-full justify-center"
-                    size="sm"
-                    aria-label={`Book ${pro.name} for ${pro.role}`}
-                  />
-                </motion.div>
-              ))}
+ <div className="bg-white py-12">
+  <div className="max-w-7xl mx-auto px-4">
+    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+      {activeCategory === "all"
+        ? "All Professionals"
+        : `${categories.find((c) => c.id === activeCategory)?.label} Professionals`}
+    </h3>
+    {filteredProfessionals.length > 0 ? (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredProfessionals.map((pro) => (
+          <motion.div
+            key={pro.id}
+            whileHover={{ y: -5 }}
+            className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 relative"
+          >
+            {pro.isVerified && <VerifiedBadge />}
+            <div className="flex items-start gap-3 mb-4 relative">
+              <div className="relative w-20 h-24 sm:w-24 sm:h-28 bg-gray-100 rounded-md overflow-hidden flex-shrink-0 animate-pulse">
+                {pro.isTopRated && <TopRatedBadge />}
+                <div className="w-full h-full flex items-center justify-center">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#ccc"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M6 20c0-3.333 4-5 6-5s6 1.667 6 5" />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="flex-grow">
+                <h4 className="font-semibold text-base sm:text-lg">{pro.name}</h4>
+                <p className="text-xs sm:text-sm text-gray-500">{pro.role}</p>
+
+                <div className="flex items-center mt-1 text-xs sm:text-sm">
+                  <FaStar className="text-yellow-400 mr-1 text-sm" />
+                  <span className="font-medium">{pro.rating.toFixed(1)}</span>
+                  <span className="text-gray-500 ml-1">
+                    ({pro.ratingCount > 1000 ? `${(pro.ratingCount / 1000).toFixed(1)}k+` : pro.ratingCount})
+                  </span>
+                </div>
+
+                <div className="flex items-center text-xs sm:text-sm text-gray-600 mt-1">
+                  <FaMapMarkerAlt className="mr-1.5 text-gray-400" />
+                  <span className="truncate">{pro.location}</span>
+                </div>
+              </div>
             </div>
-          ) : (
-            <div className="text-center py-12">
-              <h4 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">No professionals available</h4>
-              <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
-                We couldn't find any professionals in this category. Try another category or check back later.
-              </p>
+
+            {/* Tags + Price in same line */}
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              {pro.isSponsored && (
+                <span className="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">
+                  Sponsored
+                </span>
+              )}
+              {pro.isAvailable ? (
+                <span className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">
+                  Available Now
+                </span>
+              ) : (
+                <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                  Not Available
+                </span>
+              )}
+
+              {/* Price moved here, aligned right */}
+              <span className="ml-auto border border-green-500 bg-green-50 text-green-600 px-2 py-1 rounded-full text-xs font-medium">
+                ₹{pro.rate}/hr
+              </span>
             </div>
-          )}
-        </div>
+
+            <GradientButton
+              to={`/book/${pro.id}`}
+              text="Connect Now!"
+              className="w-full justify-center"
+              size="sm"
+              aria-label={`Book ${pro.name} for ${pro.role}`}
+            />
+          </motion.div>
+        ))}
       </div>
+    ) : (
+      <div className="text-center py-12">
+        <h4 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">No professionals available</h4>
+        <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
+          We couldn't find any professionals in this category. Try another category or check back later.
+        </p>
+      </div>
+    )}
+  </div>
+</div>
+
+
+
+
 
       {/* Testimonials */}
       <div className="bg-gray-50 py-12">
