@@ -41,20 +41,20 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo and Branding */}
           <div className="flex flex-col items-start">
-          <Link
-  to="/"
- 
-  className="overflow-hidden h-5 md:h-10  flex items-center"
->
-  <img
-    src={Logo}
-    alt="Logo"
-    loading="lazy"
-    className="h-32 md:h-48 object-contain"
-  />
-</Link>
+            <Link
+              to="/"
+              className="overflow-hidden h-5 md:h-10  flex items-center"
+            >
+              <img
+                src={Logo}
+                alt="Logo"
+                loading="lazy"
+                className="h-32 md:h-48 object-contain"
+              />
+            </Link>
             <p className="text-sm pt-5 text-sterile leading-relaxed max-w-xs">
-                KaamBazar connects skilled workers with those in need — building a trusted, efficient, and transparent marketplace.
+              KaamBazar connects skilled workers with those in need — building a
+              trusted, efficient, and transparent marketplace.
             </p>
           </div>
 
@@ -96,24 +96,33 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-start md:items-start">
             <h3 className="text-lg font-bold text-sterile mb-4">Contact Us</h3>
             <div className="space-y-4">
-              {(footerData as FooterData).contactDetails.map(({ icon, label, value, href }) => {
-                const Icon = iconMap[icon];
-                return (
-                  <div key={label} className="flex items-center gap-3 group">
-                    {Icon && <Icon className="text-2xl text-accent group-hover:text-accent2 transition-colors animate-pulse" />}
-                    <div>
-                      <p className="text-sm font-medium text-sterile/80">{label}</p>
-                      {href ? (
-                        <a href={href} className="text-base text-sterile hover:text-accent transition-colors">
-                          {value}
-                        </a>
-                      ) : (
-                        <p className="text-base text-sterile">{value}</p>
+              {(footerData as FooterData).contactDetails.map(
+                ({ icon, label, value, href }) => {
+                  const Icon = iconMap[icon];
+                  return (
+                    <div key={label} className="flex items-center gap-3 group">
+                      {Icon && (
+                        <Icon className="text-2xl text-accent group-hover:text-accent2 transition-colors animate-pulse" />
                       )}
+                      <div>
+                        <p className="text-sm font-medium text-sterile/80">
+                          {label}
+                        </p>
+                        {href ? (
+                          <a
+                            href={href}
+                            className="text-base text-sterile hover:text-accent transition-colors"
+                          >
+                            {value}
+                          </a>
+                        ) : (
+                          <p className="text-base text-sterile">{value}</p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                }
+              )}
             </div>
           </div>
         </div>

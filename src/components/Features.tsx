@@ -67,7 +67,8 @@ const missionCarousel: CarouselItem[] = [
   {
     image: Img1,
     title: "Our Mission",
-    description: "Connecting you with trusted professionals in minutes, not hours.",
+    description:
+      "Connecting you with trusted professionals in minutes, not hours.",
   },
   {
     image: Img2,
@@ -180,23 +181,28 @@ const testimonials: Testimonial[] = [
 // Components
 const VerifiedBadge: React.FC = () => (
   <div className="absolute top-2 right-2 z-10">
-    <MdVerified className="text-green-500 text-xl drop-shadow" title="Verified Professional" />
+    <MdVerified
+      className="text-green-500 text-xl drop-shadow"
+      title="Verified Professional"
+    />
   </div>
 );
 
 const TopRatedBadge: React.FC = () => (
   <div className="absolute top-1 right-1 z-10 flex items-center gap-1 bg-secondary/90 text-white px-2 py-0.5 rounded-full shadow text-xs">
-    <FaTrophy className="text-l"  />
-   
+    <FaTrophy className="text-l" />
   </div>
 );
 
 const Features: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>("all");
 
-  const filteredProfessionals = activeCategory === "all"
-    ? professionals
-    : professionals.filter((p) => p.isAvailable && p.category === activeCategory);
+  const filteredProfessionals =
+    activeCategory === "all"
+      ? professionals
+      : professionals.filter(
+          (p) => p.isAvailable && p.category === activeCategory
+        );
 
   return (
     <section className="bg-gray-50 text-gray-800 font-sans">
@@ -213,14 +219,27 @@ const Features: React.FC = () => {
           Seamless Services, Anytime, Anywhere
         </ScrollFloat>
         <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover fast, reliable, and trusted solutions with our 24/7 professional services.
+          Discover fast, reliable, and trusted solutions with our 24/7
+          professional services.
         </p>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 mt-8">
           {[
-            { icon: <FaClock className="text-3xl text-green-500" />, label: "24/7 Availability", description: "Access our services anytime, day or night." },
-            { icon: <FaShieldAlt className="text-3xl text-green-500" />, label: "Verified & Safe", description: "Work with trusted, vetted professionals." },
-            { icon: <FaBolt className="text-3xl text-green-500" />, label: "Instant Response", description: "Get help in minutes, not hours." },
+            {
+              icon: <FaClock className="text-3xl text-green-500" />,
+              label: "24/7 Availability",
+              description: "Access our services anytime, day or night.",
+            },
+            {
+              icon: <FaShieldAlt className="text-3xl text-green-500" />,
+              label: "Verified & Safe",
+              description: "Work with trusted, vetted professionals.",
+            },
+            {
+              icon: <FaBolt className="text-3xl text-green-500" />,
+              label: "Instant Response",
+              description: "Get help in minutes, not hours.",
+            },
           ].map(({ icon, label, description }, index) => (
             <motion.div
               key={label}
@@ -233,8 +252,12 @@ const Features: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-green-100/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex flex-col items-center text-center">
                 <div className="mb-3">{icon}</div>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{label}</h3>
-                <p className="text-gray-600 mt-1 text-sm sm:text-base">{description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+                  {label}
+                </h3>
+                <p className="text-gray-600 mt-1 text-sm sm:text-base">
+                  {description}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -268,8 +291,12 @@ const Features: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                     <div className="text-center text-white px-4">
-                      <h4 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">{item.title}</h4>
-                      <p className="text-base sm:text-lg md:text-xl max-w-md sm:max-w-lg mx-auto">{item.description}</p>
+                      <h4 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">
+                        {item.title}
+                      </h4>
+                      <p className="text-base sm:text-lg md:text-xl max-w-md sm:max-w-lg mx-auto">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -319,108 +346,119 @@ const Features: React.FC = () => {
       </div>
 
       {/* Professionals Section */}
- <div className="bg-white py-12">
-  <div className="max-w-7xl mx-auto px-4">
-    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
-      {activeCategory === "all"
-        ? "All Professionals"
-        : `${categories.find((c) => c.id === activeCategory)?.label} Professionals`}
-    </h3>
-    {filteredProfessionals.length > 0 ? (
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredProfessionals.map((pro) => (
-          <motion.div
-            key={pro.id}
-            whileHover={{ y: -5 }}
-            className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 relative"
-          >
-            {pro.isVerified && <VerifiedBadge />}
-            <div className="flex items-start gap-3 mb-4 relative">
-              <div className="relative w-20 h-24 sm:w-24 sm:h-28 bg-gray-100 rounded-md overflow-hidden flex-shrink-0 animate-pulse">
-                {pro.isTopRated && <TopRatedBadge />}
-                <div className="w-full h-full flex items-center justify-center">
-                  <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#ccc"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M6 20c0-3.333 4-5 6-5s6 1.667 6 5" />
-                  </svg>
-                </div>
-              </div>
+      <div className="bg-white py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">
+            {activeCategory === "all"
+              ? "All Professionals"
+              : `${
+                  categories.find((c) => c.id === activeCategory)?.label
+                } Professionals`}
+          </h3>
+          {filteredProfessionals.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredProfessionals.map((pro) => (
+                <motion.div
+                  key={pro.id}
+                  whileHover={{ y: -5 }}
+                  className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-all border border-gray-100 relative"
+                >
+                  {pro.isVerified && <VerifiedBadge />}
+                  <div className="flex items-start gap-3 mb-4 relative">
+                    <div className="relative w-20 h-24 sm:w-24 sm:h-28 bg-gray-100 rounded-md overflow-hidden flex-shrink-0 animate-pulse">
+                      {pro.isTopRated && <TopRatedBadge />}
+                      <div className="w-full h-full flex items-center justify-center">
+                        <svg
+                          width="40"
+                          height="40"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#ccc"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="12" cy="8" r="4" />
+                          <path d="M6 20c0-3.333 4-5 6-5s6 1.667 6 5" />
+                        </svg>
+                      </div>
+                    </div>
 
-              <div className="flex-grow">
-                <h4 className="font-semibold text-base sm:text-lg">{pro.name}</h4>
-                <p className="text-xs sm:text-sm text-gray-500">{pro.role}</p>
+                    <div className="flex-grow">
+                      <h4 className="font-semibold text-base sm:text-lg">
+                        {pro.name}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-gray-500">
+                        {pro.role}
+                      </p>
 
-                <div className="flex items-center mt-1 text-xs sm:text-sm">
-                  <FaStar className="text-yellow-400 mr-1 text-sm" />
-                  <span className="font-medium">{pro.rating.toFixed(1)}</span>
-                  <span className="text-gray-500 ml-1">
-                    ({pro.ratingCount > 1000 ? `${(pro.ratingCount / 1000).toFixed(1)}k+` : pro.ratingCount})
-                  </span>
-                </div>
+                      <div className="flex items-center mt-1 text-xs sm:text-sm">
+                        <FaStar className="text-yellow-400 mr-1 text-sm" />
+                        <span className="font-medium">
+                          {pro.rating.toFixed(1)}
+                        </span>
+                        <span className="text-gray-500 ml-1">
+                          (
+                          {pro.ratingCount > 1000
+                            ? `${(pro.ratingCount / 1000).toFixed(1)}k+`
+                            : pro.ratingCount}
+                          )
+                        </span>
+                      </div>
 
-                <div className="flex items-center text-xs sm:text-sm text-gray-600 mt-1">
-                  <FaMapMarkerAlt className="mr-1.5 text-gray-400" />
-                  <span className="truncate">{pro.location}</span>
-                </div>
-              </div>
+                      <div className="flex items-center text-xs sm:text-sm text-gray-600 mt-1">
+                        <FaMapMarkerAlt className="mr-1.5 text-gray-400" />
+                        <span className="truncate">{pro.location}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tags + Price in same line */}
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
+                    {pro.isSponsored && (
+                      <span className="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">
+                        Sponsored
+                      </span>
+                    )}
+                    {pro.isAvailable ? (
+                      <span className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">
+                        Available Now
+                      </span>
+                    ) : (
+                      <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                        Not Available
+                      </span>
+                    )}
+
+                    {/* Price moved here, aligned right */}
+                    <span className="ml-auto border border-green-500 bg-green-50 text-green-600 px-2 py-1 rounded-full text-xs font-medium">
+                      ₹{pro.rate}/hr
+                    </span>
+                  </div>
+
+                  <GradientButton
+                    to={`/book/${pro.id}`}
+                    text="Connect Now!"
+                    className="w-full justify-center"
+                    size="sm"
+                    aria-label={`Book ${pro.name} for ${pro.role}`}
+                  />
+                </motion.div>
+              ))}
             </div>
-
-            {/* Tags + Price in same line */}
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              {pro.isSponsored && (
-                <span className="bg-purple-100 text-purple-600 text-xs px-2 py-1 rounded-full">
-                  Sponsored
-                </span>
-              )}
-              {pro.isAvailable ? (
-                <span className="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">
-                  Available Now
-                </span>
-              ) : (
-                <span className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
-                  Not Available
-                </span>
-              )}
-
-              {/* Price moved here, aligned right */}
-              <span className="ml-auto border border-green-500 bg-green-50 text-green-600 px-2 py-1 rounded-full text-xs font-medium">
-                ₹{pro.rate}/hr
-              </span>
+          ) : (
+            <div className="text-center py-12">
+              <h4 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">
+                No professionals available
+              </h4>
+              <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
+                We couldn't find any professionals in this category. Try another
+                category or check back later.
+              </p>
             </div>
-
-            <GradientButton
-              to={`/book/${pro.id}`}
-              text="Connect Now!"
-              className="w-full justify-center"
-              size="sm"
-              aria-label={`Book ${pro.name} for ${pro.role}`}
-            />
-          </motion.div>
-        ))}
+          )}
+        </div>
       </div>
-    ) : (
-      <div className="text-center py-12">
-        <h4 className="text-lg sm:text-xl font-semibold text-gray-700 mb-2">No professionals available</h4>
-        <p className="text-gray-500 text-sm sm:text-base max-w-md mx-auto">
-          We couldn't find any professionals in this category. Try another category or check back later.
-        </p>
-      </div>
-    )}
-  </div>
-</div>
-
-
-
-
 
       {/* Testimonials */}
       <div className="bg-gray-50 py-12">
@@ -454,7 +492,8 @@ const Features: React.FC = () => {
                       loading="lazy"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Ctext%20x%3D%2216%22%20y%3D%2236%22%20fill%3D%22%23AAAAAA%22%20font-family%3D%22Arial%22%20font-size%3D%2210%22%3E64x64%3C%2Ftext%3E%3C%2Fsvg%3E";
+                        target.src =
+                          "data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Ctext%20x%3D%2216%22%20y%3D%2236%22%20fill%3D%22%23AAAAAA%22%20font-family%3D%22Arial%22%20font-size%3D%2210%22%3E64x64%3C%2Ftext%3E%3C%2Fsvg%3E";
                       }}
                     />
                   </div>
@@ -462,14 +501,18 @@ const Features: React.FC = () => {
                     {[...Array(5)].map((_, j) => (
                       <FaStar
                         key={j}
-                        className={`text-base ${j < rating ? "text-yellow-400" : "text-gray-300"}`}
+                        className={`text-base ${
+                          j < rating ? "text-yellow-400" : "text-gray-300"
+                        }`}
                       />
                     ))}
                   </div>
                   <blockquote className="text-gray-600 italic text-sm sm:text-base mb-3 leading-relaxed">
                     "{quote}"
                   </blockquote>
-                  <p className="font-semibold text-gray-900 text-sm sm:text-base">— {name}</p>
+                  <p className="font-semibold text-gray-900 text-sm sm:text-base">
+                    — {name}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -492,17 +535,23 @@ const Features: React.FC = () => {
           >
             {[
               {
-                icon: <FaCheckCircle className="text-green-500 text-2xl sm:text-3xl" />,
+                icon: (
+                  <FaCheckCircle className="text-green-500 text-2xl sm:text-3xl" />
+                ),
                 label: "Verified Professionals",
                 description: "Background checked and certified",
               },
               {
-                icon: <FaStar className="text-yellow-400 text-2xl sm:text-3xl" />,
+                icon: (
+                  <FaStar className="text-yellow-400 text-2xl sm:text-3xl" />
+                ),
                 label: "5-Star Rated Services",
                 description: "Rated by thousands of customers",
               },
               {
-                icon: <FaBolt className="text-green-500 text-2xl sm:text-3xl" />,
+                icon: (
+                  <FaBolt className="text-green-500 text-2xl sm:text-3xl" />
+                ),
                 label: "Instant Response",
                 description: "Average response time under 30 mins",
               },
@@ -515,8 +564,12 @@ const Features: React.FC = () => {
                   {icon}
                 </div>
                 <div className="text-center">
-                  <h4 className="text-gray-800 font-bold text-base sm:text-lg">{label}</h4>
-                  <p className="text-gray-500 text-xs sm:text-sm">{description}</p>
+                  <h4 className="text-gray-800 font-bold text-base sm:text-lg">
+                    {label}
+                  </h4>
+                  <p className="text-gray-500 text-xs sm:text-sm">
+                    {description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -543,15 +596,15 @@ const Features: React.FC = () => {
             viewport={{ once: true }}
             className="text-base sm:text-lg text-textSecondary mb-6 max-w-xl mx-auto"
           >
-            Download our app now and experience seamless service booking in seconds.
+            Download our app now and experience seamless service booking in
+            seconds.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
-                    className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4"
-
+            className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4"
           >
             <GradientButton
               to="https://play.google.com/store/apps/details?id=com.kaambazar.com"

@@ -1,8 +1,14 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify';
-import { handleError, handleSuccess } from '../utils.tsx';
-import { RiUserLine, RiMailLine, RiLock2Line, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { handleError, handleSuccess } from "../utils.tsx";
+import {
+  RiUserLine,
+  RiMailLine,
+  RiLock2Line,
+  RiEyeLine,
+  RiEyeOffLine,
+} from "react-icons/ri";
 
 type SignupInfo = {
   name: string;
@@ -12,9 +18,9 @@ type SignupInfo = {
 
 function Signup() {
   const [signupInfo, setSignupInfo] = useState<SignupInfo>({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -22,14 +28,14 @@ function Signup() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setSignupInfo(prev => ({ ...prev, [name]: value }));
-  }
+    setSignupInfo((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSignup = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { name, email, password } = signupInfo;
     if (!name || !email || !password) {
-      return handleError('Name, email, and password are required');
+      return handleError("Name, email, and password are required");
     }
 
     try {
@@ -37,9 +43,9 @@ function Signup() {
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(signupInfo)
+        body: JSON.stringify(signupInfo),
       });
 
       const result = await response.json();
@@ -48,8 +54,8 @@ function Signup() {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate('/login')
-        }, 1000)
+          navigate("/login");
+        }, 1000);
       } else if (error) {
         const details = error?.details?.[0]?.message || message;
         handleError(details);
@@ -57,9 +63,9 @@ function Signup() {
         handleError(message);
       }
     } catch (err: any) {
-      handleError(err?.message || 'Something went wrong');
+      handleError(err?.message || "Something went wrong");
     }
-  }
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -76,8 +82,12 @@ function Signup() {
                 alt="Logo"
                 className="h-12 sm:h-16 mx-auto mb-3 sm:mb-4"
               />
-              <h1 className="text-2xl sm:text-3xl font-bold text-primary">Create Account</h1>
-              <p className="mt-1 sm:mt-2 text-sm sm:text-base text-secondary">Sign up to get started</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-primary">
+                Create Account
+              </h1>
+              <p className="mt-1 sm:mt-2 text-sm sm:text-base text-secondary">
+                Sign up to get started
+              </p>
             </div>
 
             <form onSubmit={handleSignup} className="grid gap-5 sm:gap-7">
@@ -158,7 +168,10 @@ function Signup() {
             {/* Redirect */}
             <div className="mt-5 sm:mt-6 text-center text-sm">
               <span className="text-secondary">Already have an account? </span>
-              <Link to="/login" className="font-medium text-accent hover:text-accent2">
+              <Link
+                to="/login"
+                className="font-medium text-accent hover:text-accent2"
+              >
                 Sign in
               </Link>
             </div>
@@ -167,7 +180,7 @@ function Signup() {
       </div>
       <ToastContainer className="mt-8 sm:mt-12" />
     </div>
-  )
+  );
 }
 
 export default Signup;

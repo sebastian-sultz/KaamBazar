@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import React, { createContext, useState, useContext, useEffect } from "react";
+import type { ReactNode } from "react";
 
 interface UserContextType {
   loggedInUser: string | null;
@@ -12,7 +12,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
 
   useEffect(() => {
-    const user = localStorage.getItem('loggedInUser');
+    const user = localStorage.getItem("loggedInUser");
     if (user) {
       setLoggedInUser(user);
     }

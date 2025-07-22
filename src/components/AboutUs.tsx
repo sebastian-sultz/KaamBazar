@@ -1,9 +1,8 @@
-
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import GradientButton from './GradientButton';
-import { IoLogoGooglePlaystore } from 'react-icons/io5';
-import { FaApple } from 'react-icons/fa';
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import GradientButton from "./GradientButton";
+import { IoLogoGooglePlaystore } from "react-icons/io5";
+import { FaApple } from "react-icons/fa";
 
 // Define types
 interface TeamMember {
@@ -47,10 +46,12 @@ const AboutPage: React.FC = () => {
   ];
 
   useEffect(() => {
-    document.title = "About KaamBazar - Connecting Local Talent with Opportunities";
-    const metaDescription = document.createElement('meta');
+    document.title =
+      "About KaamBazar - Connecting Local Talent with Opportunities";
+    const metaDescription = document.createElement("meta");
     metaDescription.name = "description";
-    metaDescription.content = "Learn about KaamBazar's mission to revolutionize local hiring and job searching through our innovative platform.";
+    metaDescription.content =
+      "Learn about KaamBazar's mission to revolutionize local hiring and job searching through our innovative platform.";
     document.head.appendChild(metaDescription);
 
     return () => {
@@ -78,7 +79,8 @@ const AboutPage: React.FC = () => {
             variants={fadeIn}
             className="text-base sm:text-lg md:text-xl max-w-2xl sm:max-w-3xl mx-auto"
           >
-            KaamBazar bridges the gap between skilled professionals and those who need their services
+            KaamBazar bridges the gap between skilled professionals and those
+            who need their services
           </motion.p>
         </div>
       </motion.section>
@@ -94,12 +96,15 @@ const AboutPage: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center"
           >
             <motion.div variants={fadeIn}>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">Our Mission</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">
+                Our Mission
+              </h2>
               <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
-                KaamBazar is on a mission to create a trusted, efficient, and transparent marketplace
-                that connects local service providers with individuals and businesses in need of their
-                skills. We're transforming how blue-collar and skilled workers find opportunities and
-                how consumers find reliable help.
+                KaamBazar is on a mission to create a trusted, efficient, and
+                transparent marketplace that connects local service providers
+                with individuals and businesses in need of their skills. We're
+                transforming how blue-collar and skilled workers find
+                opportunities and how consumers find reliable help.
               </p>
               <div className="space-y-3 sm:space-y-4">
                 {[
@@ -123,7 +128,9 @@ const AboutPage: React.FC = () => {
                         />
                       </svg>
                     </div>
-                    <p className="ml-2 sm:ml-3 text-gray-600 text-sm sm:text-base">{item}</p>
+                    <p className="ml-2 sm:ml-3 text-gray-600 text-sm sm:text-base">
+                      {item}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -173,9 +180,9 @@ const AboutPage: React.FC = () => {
               variants={fadeIn}
               className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8"
             >
-              We envision a world where finding skilled help or meaningful work is just a tap away,
-              where trust is built into every transaction, and where local economies thrive through
-              seamless connections.
+              We envision a world where finding skilled help or meaningful work
+              is just a tap away, where trust is built into every transaction,
+              and where local economies thrive through seamless connections.
             </motion.p>
             <motion.div
               variants={fadeIn}
@@ -203,7 +210,8 @@ const AboutPage: React.FC = () => {
                       </svg>
                     ),
                     title: "Safe & Secure",
-                    description: "Verified profiles and secure payments for peace of mind",
+                    description:
+                      "Verified profiles and secure payments for peace of mind",
                   },
                   {
                     icon: (
@@ -228,7 +236,8 @@ const AboutPage: React.FC = () => {
                       </svg>
                     ),
                     title: "Local Focus",
-                    description: "Connect with professionals in your neighborhood",
+                    description:
+                      "Connect with professionals in your neighborhood",
                   },
                   {
                     icon: (
@@ -247,18 +256,20 @@ const AboutPage: React.FC = () => {
                       </svg>
                     ),
                     title: "Trusted",
-                    description: "Ratings and reviews help you make informed decisions",
+                    description:
+                      "Ratings and reviews help you make informed decisions",
                   },
                 ].map(({ icon, title, description }, index) => (
-                  <div
-                    key={index}
-                    className="p-3 sm:p-4 rounded-lg bg-gray-50"
-                  >
+                  <div key={index} className="p-3 sm:p-4 rounded-lg bg-gray-50">
                     <div className="h-10 w-10 sm:h-12 sm:w-12 mb-3 sm:mb-4 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
                       {icon}
                     </div>
-                    <h4 className="font-medium text-gray-800 text-sm sm:text-base mb-1 sm:mb-2">{title}</h4>
-                    <p className="text-gray-600 text-xs sm:text-sm">{description}</p>
+                    <h4 className="font-medium text-gray-800 text-sm sm:text-base mb-1 sm:mb-2">
+                      {title}
+                    </h4>
+                    <p className="text-gray-600 text-xs sm:text-sm">
+                      {description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -287,7 +298,8 @@ const AboutPage: React.FC = () => {
               variants={fadeIn}
               className="text-base sm:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto mb-6 sm:mb-8"
             >
-              Dedicated professionals working to make KaamBazar the best platform for local hiring
+              Dedicated professionals working to make KaamBazar the best
+              platform for local hiring
             </motion.p>
             <motion.div
               variants={staggerContainer}
@@ -303,9 +315,15 @@ const AboutPage: React.FC = () => {
                   <div className="h-24 w-24 sm:h-28 sm:w-28 mx-auto mb-3 sm:mb-4 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold">
                     {member.name.charAt(0)}
                   </div>
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-800">{member.name}</h3>
-                  <p className="text-primary text-sm sm:text-base mb-2">{member.role}</p>
-                  <p className="text-gray-600 text-sm sm:text-base">{member.bio}</p>
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-800">
+                    {member.name}
+                  </h3>
+                  <p className="text-primary text-sm sm:text-base mb-2">
+                    {member.role}
+                  </p>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    {member.bio}
+                  </p>
                 </motion.div>
               ))}
             </motion.div>
@@ -349,17 +367,18 @@ const AboutPage: React.FC = () => {
                 Powered by CybroXide Technologies
               </h2>
               <p className="text-base sm:text-lg text-gray-600 mb-4">
-                KaamBazar is proudly developed and maintained by CybroXide Technologies Pvt. Ltd.,
-                a forward-thinking technology company incorporated in 2022 with a vision to create
-                a product-service ecosystem that provides seamless experiences.
+                KaamBazar is proudly developed and maintained by CybroXide
+                Technologies Pvt. Ltd., a forward-thinking technology company
+                incorporated in 2022 with a vision to create a product-service
+                ecosystem that provides seamless experiences.
               </p>
               <p className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6">
-                As one of the most prestigious and promising technology companies, CybroXide is
-                proud to offer innovative solutions through brands like RetinaMonk, NeuraMonk,
-                eFalcon, and now KaamBazar.
+                As one of the most prestigious and promising technology
+                companies, CybroXide is proud to offer innovative solutions
+                through brands like RetinaMonk, NeuraMonk, eFalcon, and now
+                KaamBazar.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-4">
-                
                 <GradientButton
                   to="https://play.google.com/store/apps/details?id=com.kaambazar.com"
                   text="Get It on Google Play"

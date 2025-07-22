@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
-import { useUser } from '../UserContext.tsx';
-import { FaUser } from 'react-icons/fa';
-import StarBorder from '../assets/Anim/StarBorder';
-import Logo from "../assets/Img/kaambazar_logo_512x512px_transparent.png"
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useUser } from "../UserContext.tsx";
+import { FaUser } from "react-icons/fa";
+import StarBorder from "../assets/Anim/StarBorder";
+import Logo from "../assets/Img/kaambazar_logo_512x512px_transparent.png";
 const Header: React.FC = () => {
   const { loggedInUser, setLoggedInUser } = useUser();
   const navigate = useNavigate();
@@ -14,8 +14,8 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       setIsMobileMenuOpen(false);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -29,20 +29,20 @@ const Header: React.FC = () => {
     };
 
     if (isMobileMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMobileMenuOpen]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('loggedInUser');
-    setLoggedInUser('');
+    localStorage.removeItem("token");
+    localStorage.removeItem("loggedInUser");
+    setLoggedInUser("");
     setIsMobileMenuOpen(false);
-    navigate('/login');
+    navigate("/login");
   };
 
   const toggleMobileMenu = () => {
@@ -51,19 +51,19 @@ const Header: React.FC = () => {
 
   const navItems = [
     {
-      to: '/',
-      label: 'Home',
-      icon: 'M5 12l-2 0l9 -9l9 9l-2 0 M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7 M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6',
+      to: "/",
+      label: "Home",
+      icon: "M5 12l-2 0l9 -9l9 9l-2 0 M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7 M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6",
     },
     {
-      to: '/aboutUs',
-      label: 'About Us',
-      icon: 'M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0 M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2',
+      to: "/aboutUs",
+      label: "About Us",
+      icon: "M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0 M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2",
     },
     {
-      to: '/contact',
-      label: 'Contact Us',
-      icon: 'M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2H5a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2z',
+      to: "/contact",
+      label: "Contact Us",
+      icon: "M3 8l7.89 5.26a2 2 0 0 0 2.22 0L21 8M5 19h14a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2H5a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2z",
     },
   ];
 
@@ -74,18 +74,17 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between py-1 md:py-2 rounded-full px-2 md:px-3 backdrop-blur-xl bg-[rgba(249,250,251,0.7)] shadow-md border border-border transition-all duration-300">
           {/* Logo - unchanged */}
           <NavLink
-  to="/"
-  onClick={() => setIsMobileMenuOpen(false)}
-  className="overflow-hidden h-4 md:h-5 flex items-center"
->
-  <img
-    src={Logo}
-    alt="Logo"
-    loading="lazy"
-    className="h-28 md:h-32 w-fit object-contain"
-  />
-</NavLink>
-
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="overflow-hidden h-4 md:h-5 flex items-center"
+          >
+            <img
+              src={Logo}
+              alt="Logo"
+              loading="lazy"
+              className="h-28 md:h-32 w-fit object-contain"
+            />
+          </NavLink>
 
           {/* Desktop navigation - unchanged */}
           <nav className="hidden md:flex items-center space-x-6">
@@ -97,8 +96,8 @@ const Header: React.FC = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-2 text-sm font-medium transition-all duration-200 relative px-3 py-1 ${
                     isActive
-                      ? 'text-primary font-semibold'
-                      : 'text-text hover:text-primary'
+                      ? "text-primary font-semibold"
+                      : "text-text hover:text-primary"
                   } after:content-[""] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-primary after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`
                 }
               >
@@ -115,12 +114,16 @@ const Header: React.FC = () => {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       className={`h-5 w-5 transition-transform ${
-                        isActive ? 'scale-110 text-primary' : 'text-textSecondary'
+                        isActive
+                          ? "scale-110 text-primary"
+                          : "text-textSecondary"
                       }`}
                     >
                       <path d={icon} />
                     </svg>
-                    <span className="hidden lg:inline md:text-base">{label}</span>
+                    <span className="hidden lg:inline md:text-base">
+                      {label}
+                    </span>
                   </>
                 )}
               </NavLink>
@@ -130,13 +133,12 @@ const Header: React.FC = () => {
           {/* Desktop auth buttons - wrapped original button with StarBorder */}
           <div className="hidden md:flex items-center gap-4">
             <NavLink
-              to={loggedInUser ? '#' : '/login'}
+              to={loggedInUser ? "#" : "/login"}
               onClick={loggedInUser ? handleLogout : undefined}
             >
               <StarBorder
-              thickness={0.5}
+                thickness={0.5}
                 as="div"
-              
                 className="relative inline-flex items-center rounded-full transition-all group"
               >
                 <span className="absolute inset-0 rounded-full p-0.5">
@@ -144,7 +146,7 @@ const Header: React.FC = () => {
                 </span>
                 <span className="relative z-10 flex items-center gap-2 text-primary px-5 py-2.5 font-semibold">
                   <FaUser className="h-5 w-5" />
-                  {loggedInUser ? 'Logout' : 'Login'}
+                  {loggedInUser ? "Logout" : "Login"}
                   <svg
                     className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
                     fill="none"
@@ -166,7 +168,7 @@ const Header: React.FC = () => {
           {/* Mobile controls - unchanged */}
           <div className="flex md:hidden items-center gap-3">
             <button
-              onClick={loggedInUser ? handleLogout : () => navigate('/login')}
+              onClick={loggedInUser ? handleLogout : () => navigate("/login")}
               className="inline-flex items-center p-2 bg-primary text-white font-semibold rounded-full hover:shadow-lg transition-all group relative overflow-hidden hover:bg-green-700"
             >
               <span className="relative z-10 flex items-center">
@@ -226,8 +228,8 @@ const Header: React.FC = () => {
                   className={({ isActive }) =>
                     `group flex items-center gap-3 p-2 rounded-md text-sm font-medium transition-all duration-200 relative ${
                       isActive
-                        ? 'text-primary font-semibold'
-                        : 'text-text hover:text-primary'
+                        ? "text-primary font-semibold"
+                        : "text-text hover:text-primary"
                     } after:content-[""] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[2px] after:bg-primary after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100`
                   }
                 >
@@ -245,8 +247,8 @@ const Header: React.FC = () => {
                         strokeLinejoin="round"
                         className={`h-5 w-5 transition-colors duration-200 ${
                           isActive
-                            ? 'text-primary scale-110'
-                            : 'text-textSecondary group-hover:text-primary'
+                            ? "text-primary scale-110"
+                            : "text-textSecondary group-hover:text-primary"
                         }`}
                       >
                         <path d={icon} />

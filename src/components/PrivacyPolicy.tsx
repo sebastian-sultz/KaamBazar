@@ -4,7 +4,6 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <section className="font-inter pt-24 pb-16 bg-gradient-to-br from-surface to-background px-4 sm:px-6 md:px-12 lg:px-20">
       <div className="container mx-auto max-w-4xl relative">
-
         {/* Header */}
         <div className="relative mb-12 animate-fade-in">
           <h1 className="text-4xl sm:text-5xl font-extrabold text-text text-center drop-shadow-2xl">
@@ -50,7 +49,9 @@ const PrivacyPolicy: React.FC = () => {
               className="bg-surface p-6 rounded-2xl shadow-lg border border-border backdrop-blur-md transition-all hover:shadow-xl"
             >
               <h2 className="text-2xl font-bold text-text mb-4">{title}</h2>
-              <p className="text-sm md:text-base text-textSecondary">{content}</p>
+              <p className="text-sm md:text-base text-textSecondary">
+                {content}
+              </p>
             </div>
           ))}
         </div>
@@ -61,7 +62,8 @@ const PrivacyPolicy: React.FC = () => {
             For questions about this Privacy Policy, please{" "}
             <a href="/contact" className="text-accent hover:underline">
               contact us
-            </a>.
+            </a>
+            .
           </p>
         </div>
       </div>

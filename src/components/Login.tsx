@@ -1,9 +1,14 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import { handleError, handleSuccess } from '../utils.tsx';
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { handleError, handleSuccess } from "../utils.tsx";
 // import { useUser } from '../UserContext.tsx';
-import { RiMailLine, RiLock2Line, RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
+import {
+  RiMailLine,
+  RiLock2Line,
+  RiEyeLine,
+  RiEyeOffLine,
+} from "react-icons/ri";
 
 interface LoginInfo {
   email: string;
@@ -12,8 +17,8 @@ interface LoginInfo {
 
 function Login() {
   const [loginInfo, setLoginInfo] = useState<LoginInfo>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -22,21 +27,21 @@ function Login() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setLoginInfo(prev => ({ ...prev, [name]: value }));
+    setLoginInfo((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, password } = loginInfo;
     if (!email || !password) {
-      return handleError('Email and password are required');
+      return handleError("Email and password are required");
     }
 
     try {
       const response = await fetch(`http://localhost:8080/auth/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(loginInfo),
       });
@@ -46,10 +51,10 @@ function Login() {
 
       if (success) {
         handleSuccess(message);
-        localStorage.setItem('token', jwtToken);
-        localStorage.setItem('loggedInUser', name);
+        localStorage.setItem("token", jwtToken);
+        localStorage.setItem("loggedInUser", name);
         // setLoggedInUser(name);
-        setTimeout(() => navigate('/home'), 1000);
+        setTimeout(() => navigate("/home"), 1000);
       } else if (error) {
         const details = error?.details?.[0]?.message;
         handleError(details || message);
@@ -57,12 +62,12 @@ function Login() {
         handleError(message);
       }
     } catch (err: any) {
-      handleError(err.message || 'Something went wrong');
+      handleError(err.message || "Something went wrong");
     }
   };
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prev => !prev);
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -76,8 +81,12 @@ function Login() {
                 alt="Logo"
                 className="h-12 sm:h-16 mx-auto mb-3 sm:mb-4"
               />
-              <h1 className="text-2xl sm:text-3xl font-bold text-primary">Welcome Back</h1>
-              <p className="mt-1 sm:mt-2 text-sm sm:text-base text-secondary">Sign in to access your account</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-primary">
+                Welcome Back
+              </h1>
+              <p className="mt-1 sm:mt-2 text-sm sm:text-base text-secondary">
+                Sign in to access your account
+              </p>
             </div>
 
             <form onSubmit={handleLogin} className="grid gap-5 sm:gap-7">
@@ -104,7 +113,7 @@ function Login() {
                   <RiLock2Line className="text-gray-800 text-lg sm:text-xl" />
                   <input
                     onChange={handleChange}
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Enter Password..."
                     value={loginInfo.password}
@@ -135,13 +144,19 @@ function Login() {
                     type="checkbox"
                     className="h-4 w-4 text-accent focus:ring-accent border-border rounded"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-secondary">
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-secondary"
+                  >
                     Remember me
                   </label>
                 </div>
 
                 <div className="text-sm">
-                  <Link to="/forgot-password" className="font-medium text-accent hover:text-accent2">
+                  <Link
+                    to="/forgot-password"
+                    className="font-medium text-accent hover:text-accent2"
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -161,7 +176,10 @@ function Login() {
             {/* Signup Redirect */}
             <div className="mt-5 sm:mt-6 text-center text-sm">
               <span className="text-secondary">Don't have an account? </span>
-              <Link to="/signup" className="font-medium text-accent hover:text-accent2">
+              <Link
+                to="/signup"
+                className="font-medium text-accent hover:text-accent2"
+              >
                 Sign up
               </Link>
             </div>

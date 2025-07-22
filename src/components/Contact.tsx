@@ -81,36 +81,51 @@ const ContactUs: React.FC = () => {
       case "name":
         if (!value) error = "Name is required";
         else if (value.length < 2) error = "Name must be at least 2 characters";
-        else if (value.length > 50) error = "Name must be less than 50 characters";
+        else if (value.length > 50)
+          error = "Name must be less than 50 characters";
         break;
       case "email":
         if (!value) error = "Email is required";
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = "Invalid email format";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+          error = "Invalid email format";
         break;
       case "subject":
         if (!value) error = "Subject is required";
-        else if (value.length > 100) error = "Subject must be less than 100 characters";
+        else if (value.length > 100)
+          error = "Subject must be less than 100 characters";
         break;
       case "message":
         if (!value) error = "Message is required";
-        else if (value.length < 10) error = "Message must be at least 10 characters";
-        else if (value.length > 500) error = "Message must be less than 500 characters";
+        else if (value.length < 10)
+          error = "Message must be at least 10 characters";
+        else if (value.length > 500)
+          error = "Message must be less than 500 characters";
         break;
     }
     return error;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (submitStatus.type === "error" || errors[name as keyof FormErrors]) {
-      setErrors({ ...errors, [name]: validateField(name as keyof FormData, value) });
+      setErrors({
+        ...errors,
+        [name]: validateField(name as keyof FormData, value),
+      });
     }
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setErrors({ ...errors, [name]: validateField(name as keyof FormData, value) });
+    setErrors({
+      ...errors,
+      [name]: validateField(name as keyof FormData, value),
+    });
   };
 
   const validateForm = (): boolean => {
@@ -127,7 +142,10 @@ const ContactUs: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
-      setSubmitStatus({ type: "error", message: "Please fill out all required fields correctly." });
+      setSubmitStatus({
+        type: "error",
+        message: "Please fill out all required fields correctly.",
+      });
       return;
     }
 
@@ -159,7 +177,8 @@ const ContactUs: React.FC = () => {
             Let's Connect
           </h1>
           <p className="text-textSecondary text-base sm:text-lg max-w-xl sm:max-w-2xl mx-auto">
-            Whether you're looking for support or just want to say hello, we'd love to hear from you.
+            Whether you're looking for support or just want to say hello, we'd
+            love to hear from you.
           </p>
         </div>
 
@@ -191,13 +210,13 @@ const ContactUs: React.FC = () => {
                 {
                   icon: <Clock className="w-5 h-5 sm:w-6 sm:h-6" />,
                   title: "Business Hours",
-                  value: Object.entries(contactData.contactDetails.businessHours).map(
-                    ([day, hours], index) => (
-                      <span key={index} className="block">
-                        {day}: {hours}
-                      </span>
-                    )
-                  ),
+                  value: Object.entries(
+                    contactData.contactDetails.businessHours
+                  ).map(([day, hours], index) => (
+                    <span key={index} className="block">
+                      {day}: {hours}
+                    </span>
+                  )),
                   color: "bg-primary",
                 },
               ].map(({ icon, title, value, color }, index) => (
@@ -205,12 +224,18 @@ const ContactUs: React.FC = () => {
                   key={index}
                   className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 shadow-md"
                 >
-                  <div className={`${color} p-3 sm:p-4 rounded-full text-white shadow-sm`}>
+                  <div
+                    className={`${color} p-3 sm:p-4 rounded-full text-white shadow-sm`}
+                  >
                     {icon}
                   </div>
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-primary">{title}</h3>
-                    <p className="text-textSecondary text-sm sm:text-base">{value}</p>
+                    <h3 className="text-base sm:text-lg font-semibold text-primary">
+                      {title}
+                    </h3>
+                    <p className="text-textSecondary text-sm sm:text-base">
+                      {value}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -219,10 +244,26 @@ const ContactUs: React.FC = () => {
             {/* Social Icons */}
             <div className="flex gap-3 sm:gap-4 pt-4 justify-center items-center">
               {[
-                { icon: Youtube, url: "https://www.youtube.com/@Kaambazar", label: "YouTube" },
-                { icon: Twitter, url: "https://twitter.com/Kaambazar", label: "Twitter" },
-                { icon: Instagram, url: "https://www.instagram.com/Kaambazar", label: "Instagram" },
-                { icon: Linkedin, url: "https://www.linkedin.com/company/Kaambazar", label: "LinkedIn" },
+                {
+                  icon: Youtube,
+                  url: "https://www.youtube.com/@Kaambazar",
+                  label: "YouTube",
+                },
+                {
+                  icon: Twitter,
+                  url: "https://twitter.com/Kaambazar",
+                  label: "Twitter",
+                },
+                {
+                  icon: Instagram,
+                  url: "https://www.instagram.com/Kaambazar",
+                  label: "Instagram",
+                },
+                {
+                  icon: Linkedin,
+                  url: "https://www.linkedin.com/company/Kaambazar",
+                  label: "LinkedIn",
+                },
               ].map(({ icon: Icon, url, label }, idx) => (
                 <a
                   key={idx}
@@ -248,7 +289,9 @@ const ContactUs: React.FC = () => {
               <div className="mb-4 sm:mb-6 p-4 bg-green-100/20 border border-green-400/30 rounded-lg flex items-start gap-2 sm:gap-3">
                 <CheckCircle className="text-green-500 mt-0.5 flex-shrink-0 w-5 h-5" />
                 <div>
-                  <p className="text-green-500 font-medium text-sm sm:text-base">{submitStatus.message}</p>
+                  <p className="text-green-500 font-medium text-sm sm:text-base">
+                    {submitStatus.message}
+                  </p>
                   <p className="text-green-500/80 text-xs sm:text-sm mt-1">
                     We'll get back to you within 24 hours.
                   </p>
@@ -259,15 +302,34 @@ const ContactUs: React.FC = () => {
             {submitStatus.type === "error" && (
               <div className="mb-4 sm:mb-6 p-4 bg-red-100/20 border border-red-400/30 rounded-lg flex items-start gap-2 sm:gap-3">
                 <AlertCircle className="text-red-500 mt-0.5 flex-shrink-0 w-5 h-5" />
-                <p className="text-red-500 text-sm sm:text-base">{submitStatus.message}</p>
+                <p className="text-red-500 text-sm sm:text-base">
+                  {submitStatus.message}
+                </p>
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               {[
-                { name: "name", type: "text", placeholder: "Your Name", maxLength: 50, label: "Name" },
-                { name: "email", type: "email", placeholder: "Your Email", label: "Email" },
-                { name: "subject", type: "text", placeholder: "Subject", maxLength: 100, label: "Subject" },
+                {
+                  name: "name",
+                  type: "text",
+                  placeholder: "Your Name",
+                  maxLength: 50,
+                  label: "Name",
+                },
+                {
+                  name: "email",
+                  type: "email",
+                  placeholder: "Your Email",
+                  label: "Email",
+                },
+                {
+                  name: "subject",
+                  type: "text",
+                  placeholder: "Subject",
+                  maxLength: 100,
+                  label: "Subject",
+                },
               ].map(({ name, type, placeholder, maxLength, label }) => (
                 <div key={name} className="space-y-1">
                   <label htmlFor={name} className="sr-only">
@@ -284,21 +346,29 @@ const ContactUs: React.FC = () => {
                       onBlur={handleBlur}
                       maxLength={maxLength}
                       className={`w-full bg-background border ${
-                        errors[name as keyof FormErrors] ? "border-red-500" : "border-white/20"
+                        errors[name as keyof FormErrors]
+                          ? "border-red-500"
+                          : "border-white/20"
                       } text-text px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg focus:outline-none focus:ring-2 ${
-                        errors[name as keyof FormErrors] ? "focus:ring-red-500" : "focus:ring-primary"
+                        errors[name as keyof FormErrors]
+                          ? "focus:ring-red-500"
+                          : "focus:ring-primary"
                       } text-sm sm:text-base`}
                       aria-invalid={!!errors[name as keyof FormErrors]}
                       aria-describedby={`${name}-error`}
                     />
                     {maxLength && (
                       <span className="absolute right-2 sm:right-3 bottom-2 sm:bottom-3 text-xs text-textSecondary">
-                        {characterCount[name as keyof CharacterCount]}/{maxLength}
+                        {characterCount[name as keyof CharacterCount]}/
+                        {maxLength}
                       </span>
                     )}
                   </div>
                   {errors[name as keyof FormErrors] && (
-                    <p id={`${name}-error`} className="text-red-500 text-xs sm:text-sm flex items-center gap-1">
+                    <p
+                      id={`${name}-error`}
+                      className="text-red-500 text-xs sm:text-sm flex items-center gap-1"
+                    >
                       <AlertCircle className="w-4 h-4" />
                       {errors[name as keyof FormErrors]}
                     </p>
@@ -323,7 +393,9 @@ const ContactUs: React.FC = () => {
                     className={`w-full bg-background border ${
                       errors.message ? "border-red-500" : "border-white/20"
                     } text-text px-4 sm:px-5 py-2.5 sm:py-3 rounded-lg focus:outline-none focus:ring-2 ${
-                      errors.message ? "focus:ring-red-500" : "focus:ring-primary"
+                      errors.message
+                        ? "focus:ring-red-500"
+                        : "focus:ring-primary"
                     } resize-none text-sm sm:text-base`}
                     aria-invalid={!!errors.message}
                     aria-describedby="message-error"
@@ -333,7 +405,10 @@ const ContactUs: React.FC = () => {
                   </span>
                 </div>
                 {errors.message && (
-                  <p id="message-error" className="text-red-500 text-xs sm:text-sm flex items-center gap-1">
+                  <p
+                    id="message-error"
+                    className="text-red-500 text-xs sm:text-sm flex items-center gap-1"
+                  >
                     <AlertCircle className="w-4 h-4" />
                     {errors.message}
                   </p>
@@ -343,7 +418,13 @@ const ContactUs: React.FC = () => {
               <GradientButton
                 type="submit"
                 text={isSubmitting ? "Sending..." : "Send Message"}
-                icon={isSubmitting ? <Loader2 className="animate-spin w-4 h-4 sm:w-5 sm:h-5" /> : <SendHorizontal className="w-4 h-4 sm:w-5 sm:h-5" />}
+                icon={
+                  isSubmitting ? (
+                    <Loader2 className="animate-spin w-4 h-4 sm:w-5 sm:h-5" />
+                  ) : (
+                    <SendHorizontal className="w-4 h-4 sm:w-5 sm:h-5" />
+                  )
+                }
                 className="w-full justify-center"
                 size="sm"
                 disabled={isSubmitting}
@@ -367,7 +448,9 @@ const ContactUs: React.FC = () => {
               className="w-full h-[300px] sm:h-[400px] md:h-[450px] border-none"
               allowFullScreen
               loading="lazy"
-              style={{ filter: "grayscale(10%) contrast(110%) brightness(95%)" }}
+              style={{
+                filter: "grayscale(10%) contrast(110%) brightness(95%)",
+              }}
             ></iframe>
           </div>
         </div>
