@@ -47,6 +47,19 @@ Designed with a clean, scalable UI and powered by performance-focused tech like 
 
 ---
 
+## 🧪 Prerequisites
+Before running the project, ensure you have the following installed:
+
+`Node.js >= 21.0.0` – Required for Vite’s use of Web Crypto API
+
+`npm >= 9.0.0` – To manage dependencies
+
+Git – To clone the repository
+
+A modern code editor (e.g., VS Code) with support for TypeScript
+
+---
+
 ## 📦 Installation  
 
 Clone the repo and install dependencies:
